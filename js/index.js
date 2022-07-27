@@ -64,7 +64,7 @@ function dayOfTheWeek(d, m, y) {
 
 function fetchWeatherData(){
     // Conexion a data dinamica de api
-    fetch(`http://api.weatherapi.com/v1/current.json?key=1f19a90b33d54a4db73212432222607&q=${cityInput}&aqi=yes`
+    fetch(`https://api.weatherapi.com/v1/current.json?key=1f19a90b33d54a4db73212432222607&q=${cityInput}&aqi=yes`
 
     // {   method: 'GET',
     //     headers: new Headers({ 'Content-type': 'application/json'}),
