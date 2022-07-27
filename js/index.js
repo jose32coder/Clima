@@ -107,7 +107,7 @@ function fetchWeatherData(){
         const iconId = data.current.condition.icon.substr(`//cdn.weatherapi.com/weather/64x64/`.length);
 
         // cambio el formato del icono a mi carpeta de iconos y lo agrego a la pagina
-        icon.src = '../icons/64x64/' + iconId;
+        icon.src = './icons/64x64/' + iconId;
 
         // Agrego detalles a la pagina
         cloudOutput.innerHTML = data.current.cloud + '%';
