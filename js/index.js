@@ -18,8 +18,15 @@ const cities = document.querySelectorAll('.city');
 
 console.log(cities)
 
+window.addEventListener('DOMContentLoaded', () =>{
+    console.log('loaded');
+    fetchWeatherData();
+})
+search.addEventListener('keyup', e =>{
+    console.log(search.value)
+})
 
-let cityInput = "Agua Blanca";
+let cityInput = "Agua Blanca, Portuguesa, Venezuela";
 
 cities.forEach((city) =>{
     console.log('hola')
@@ -47,30 +54,24 @@ form.addEventListener('submit', e => {
 
 // Esta funcion va a retornar el dia de la semana y la fecha en formato date ej: (26/07/2022)
 
-function dayOfTheWeek(d, m, y) {
+function dayOfTheWeek(day, month, year) {
     const weekday = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
+        "Domingo",
+        "Lunes",
+        "Martes",
+        "Miercoles",
+        "Jueves",
+        "Viernes",
+        "Sabado"
     ];
-    return weekday[new Date(`${d}/${m}/${y}`).getDay()];
+    return weekday[new Date(`${day}/${month}/${year}`).getDay()];
 };
 
 // Funcion que despliega la API del clima
 
 function fetchWeatherData(){
     // Conexion a data dinamica de api
-    fetch(`https://api.weatherapi.com/v1/current.json?key=1f19a90b33d54a4db73212432222607&q=${cityInput}&aqi=yes`
-
-    // {   method: 'GET',
-    //     headers: new Headers({ 'Content-type': 'application/json'}),
-    //     mode: 'no-cors',
-    //     cache: 'default'
-    )
+    fetch(`https://api.weatherapi.com/v1/current.json?key=1f19a90b33d54a4db73212432222607&q=${cityInput}&aqi=yes`)
     
     //Obtengo el formato del JSON y convierto los onjetos en objetos regulares del JS
 
@@ -79,7 +80,7 @@ function fetchWeatherData(){
         // Verifico por el console.log los datos disponibles que quiera usar
         console.log(data);
 
-        // Empiezo a modificar por la temperatura
+        // modifico la temperatura
         temp.innerHTML = data.current.temp_c + '&#176;';
         conditionOutput.innerHTML = data.current.condition.text;
 
@@ -136,14 +137,14 @@ function fetchWeatherData(){
                 btn.style.background = '#181e27'
             }
         }
-        else if (code == 1003 || code == 1006 || code == 1009 || code == 1030 || code == 1069 || code == 1087 || code == 1135 || code == 1273 || code == 1276 || code == 1279 || code == 1282){
+        else if (code == 1003 || code == 1006 || code == 1009 || code == 1030 || code == 1063 || code == 1069 || code == 1087 || code == 1135 || code == 1273 || code == 1276 || code == 1279 || code == 1282){
             app.style.backgroundImage = `url(../img/${timeOfDay}/cloudy.jpg)`;
             btn.style.background = '#fa6d1b'
             if (timeOfDay == 'night') {
                 btn.style.background = "181e27"
             }
         }
-        else if (code == 1063 || code == 1069 || code == 1072 || code == 1150 || code == 1153 || code == 1180 || code == 1183 || code == 1186 || code == 1189 || code == 1192 || code == 1195 || code == 1204 || code == 1207 || code == 1240 || code == 1243 || code == 1246 || code == 1249 || code == 1252){
+        else if (code == 1069 || code == 1072 || code == 1150 || code == 1153 || code == 1180 || code == 1183 || code == 1186 || code == 1189 || code == 1192 || code == 1195 || code == 1204 || code == 1207 || code == 1240 || code == 1243 || code == 1246 || code == 1249 || code == 1252){
             app.style.backgroundImage = `url(../img/${timeOfDay}/rainy.jpg)`;
             btn.style.background = '#647d75'
             if (timeOfDay == 'night') {
@@ -165,5 +166,5 @@ function fetchWeatherData(){
     });
 }
 
-fetchWeatherData();
+
 app.style.opacity = '1';
